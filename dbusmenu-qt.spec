@@ -2,7 +2,7 @@
 Summary: A Qt implementation of the DBusMenu protocol 
 Name:    dbusmenu-qt
 Version: 0.9.2
-Release: 4%{?dist}
+Release: 7%{?dist}
 
 Group: System Environment/Libraries
 License: LGPLv2+
@@ -35,6 +35,13 @@ Group:   Development/Libraries
 Provides: libdbusmenu-devel = %{version}-%{release}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 %description devel
+%{summary}.
+
+%package devel-docs
+Summary: API documentation for %{name}
+Requires: %{name} = %{version}-%{release}
+BuildArch: noarch
+%description devel-docs
 %{summary}.
 
 
@@ -81,13 +88,24 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
-%doc %{_target_platform}/html/
 %{_includedir}/dbusmenu-qt/
 %{_libdir}/libdbusmenu-qt.so
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
 
+%files devel-docs
+%defattr(-,root,root,-)
+%doc %{_target_platform}/html/
 
 %changelog
+* Tue Mar 18 2014 Lukáš Tinkl <ltinkl@redhat.com> - 0.9.2-7
+- Resolves rhbz#1076410 - dbusmenu-qt has multilib conflicts
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.9.2-6
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.9.2-5
+- Mass rebuild 2013-12-27
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
